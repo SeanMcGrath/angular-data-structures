@@ -1,0 +1,53 @@
+<div>
+	<button (click)="buildTree(nodeCount.value)">
+		Create new
+	</button> tree with <input #nodeCount value="20" type="number"> elements
+</div>
+
+<div>
+	<input #newItem
+		(keyup.enter)="add(newItem.value); newItem.value = ''"
+		(keyup)="onAddKeyup(newItem.value)">
+
+	<button #addButton
+		(click)="add(newItem.value); newItem.value = ''"
+		[disabled]="addButtonDisabled">
+		Add
+	</button>
+</div>
+
+<div>
+	<input #removeItem
+		(keyup.enter)="remove(removeItem.value); removeItem.value = ''"
+		(keyup)="onRemoveKeyup(removeItem.value)">
+
+	<button #removeButton
+		(click)="remove(removeItem.value); removeItem.value = ''"
+		[disabled]="removeButtonDisabled">
+		Remove
+	</button>
+</div>
+
+<div>
+	<input #findItem
+		(keyup.enter)="find(findItem.value); findItem.value = ''"
+		(keyup)="onFindKeyup(findItem.value)">
+
+	<button #addButton
+		(click)="find(findItem.value); findItem.value = ''"
+		[disabled]="findButtonDisabled">
+		Find
+	</button>
+</div>
+
+<div *ngIf="nodeFound">
+	Node found in {{operationsTaken}} operations
+</div>
+
+<div [innerHtml]="sanitizer.bypassSecurityTrustHtml(tree.toString())">
+</div>
+
+<div> There are {{tree.size}} elements in the tree</div>
+<div> In order traversal : {{printInOrder()}}</div>
+<div> Preorder traversal : {{printPreOrder()}}</div>
+<div> Postorder traversal : {{printPostOrder()}}</div>

@@ -1,0 +1,44 @@
+<p>
+{{list.toString()}}
+</p>
+
+<div>
+	<input #newItem
+		(keyup.enter)="add(newItem.value); newItem.value = ''"
+		(keyup)="onAddKeyup(newItem.value)">
+
+	<button #addButton
+		(click)="add(newItem.value); newItem.value = ''"
+		[disabled]="addButtonDisabled">
+		Add
+	</button>
+</div>
+
+<div>
+	<input #removeAtIndex type="number" value="0">
+
+	<button #removeAtButton
+		(click)="removeAt(removeAtIndex.value)">
+		Remove at index
+	</button>
+</div>
+
+<div>
+	<input #itemToRemove
+		(keyup.enter)="removeContent(itemToRemove.value); itemToRemove.value = ''"
+		(keyup)="onRemoveItemKeyup(itemToRemove.value)">
+
+	<button #removeContentButton
+		(click)="removeContent(itemToRemove.value); itemToRemove.value = ''"
+		[disabled]="removeItemButtonDisabled">
+		Remove item
+	</button>
+</div>
+
+<div>
+	Does the list contain <input [(ngModel)]="containsTestItem"> ?
+	<span>{{list.contains(containsTestItem)}}</span>
+
+</div>
+
+
